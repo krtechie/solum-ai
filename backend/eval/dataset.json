@@ -1,0 +1,122 @@
+[
+  {
+    "id": "real_01",
+    "category": "real",
+    "label": "CRM with payments",
+    "prompt": "Build a CRM with login, contacts management, deals pipeline, dashboard with analytics, role-based access for admin and sales reps, and a premium plan with Stripe payments. Admins can see all analytics."
+  },
+  {
+    "id": "real_02",
+    "category": "real",
+    "label": "E-commerce store",
+    "prompt": "Build an e-commerce platform with product listings, shopping cart, checkout with payments, order tracking, admin panel for managing products and orders, and customer accounts with order history."
+  },
+  {
+    "id": "real_03",
+    "category": "real",
+    "label": "Project management tool",
+    "prompt": "Build a project management app like Trello. Users can create boards, lists, and cards. Cards have due dates, assignees, labels, and comments. Teams can collaborate on boards. Admin can manage members."
+  },
+  {
+    "id": "real_04",
+    "category": "real",
+    "label": "SaaS blog platform",
+    "prompt": "Build a multi-tenant blog platform. Each user gets their own blog with custom domain support. Posts support markdown, tags, categories, and SEO metadata. Public readers don't need accounts. Monetize via subscriptions."
+  },
+  {
+    "id": "real_05",
+    "category": "real",
+    "label": "Job board",
+    "prompt": "Build a job board where companies can post jobs and candidates can apply. Companies have profiles and dashboards to manage job postings and review applications. Candidates upload resumes and track application status."
+  },
+  {
+    "id": "real_06",
+    "category": "real",
+    "label": "Booking system",
+    "prompt": "Build an appointment booking system for a clinic. Doctors have schedules with available slots. Patients book appointments, get email reminders, and can cancel or reschedule. Admin manages doctors and sees all bookings."
+  },
+  {
+    "id": "real_07",
+    "category": "real",
+    "label": "Learning management system",
+    "prompt": "Build an LMS where instructors create courses with video lessons, quizzes, and assignments. Students enroll, track progress, submit assignments, and earn certificates. Admin manages users and content moderation."
+  },
+  {
+    "id": "real_08",
+    "category": "real",
+    "label": "Inventory management",
+    "prompt": "Build an inventory management system for a warehouse. Track products, stock levels, suppliers, purchase orders, and shipments. Alert when stock is low. Generate reports on inventory value and movement history."
+  },
+  {
+    "id": "real_09",
+    "category": "real",
+    "label": "Social media app",
+    "prompt": "Build a social media app where users post photos and videos, follow each other, like and comment on posts, send direct messages, and see a personalized feed. Include notifications and content moderation for admins."
+  },
+  {
+    "id": "real_10",
+    "category": "real",
+    "label": "Restaurant ordering",
+    "prompt": "Build an online ordering system for restaurants. Customers browse menus, add items to cart, and pay. Restaurant staff manage orders on a dashboard with status updates. Admin configures menu items, prices, and hours."
+  },
+  {
+    "id": "edge_01",
+    "category": "edge",
+    "label": "Vague — no entities",
+    "prompt": "Build me an app for my business."
+  },
+  {
+    "id": "edge_02",
+    "category": "edge",
+    "label": "Conflicting requirements",
+    "prompt": "Build an app where all data is completely private and nobody can see anyone else's data, but also build a public dashboard that shows all user data and activity in real time."
+  },
+  {
+    "id": "edge_03",
+    "category": "edge",
+    "label": "Underspecified — missing roles",
+    "prompt": "Build a dashboard with charts and tables."
+  },
+  {
+    "id": "edge_04",
+    "category": "edge",
+    "label": "Contradictory auth",
+    "prompt": "Build a platform with no login required but also with premium content that only paid subscribers can access and admin-only sections."
+  },
+  {
+    "id": "edge_05",
+    "category": "edge",
+    "label": "Extremely complex",
+    "prompt": "Build a hospital management system with patients, doctors, nurses, departments, wards, beds, appointments, prescriptions, lab tests, radiology, billing, insurance claims, inventory, HR, payroll, and a mobile app for patients."
+  },
+  {
+    "id": "edge_06",
+    "category": "edge",
+    "label": "Technology mismatch",
+    "prompt": "Build a blockchain-based voting system using AI and quantum encryption where votes are anonymous but also fully auditable and every vote is stored on-chain in real time."
+  },
+  {
+    "id": "edge_07",
+    "category": "edge",
+    "label": "Technical jargon only",
+    "prompt": "Build me a CQRS event-sourced microservice with saga orchestration for handling distributed transactions."
+  },
+  {
+    "id": "edge_08",
+    "category": "edge",
+    "label": "Single word",
+    "prompt": "CRM"
+  },
+  {
+    "id": "edge_09",
+    "category": "edge",
+    "label": "Feature creep",
+    "prompt": "Build an app that does everything — social media, e-commerce, project management, video streaming, email, calendar, file storage, AI chat, cryptocurrency wallet, and food delivery, all in one."
+  },
+  {
+    "id": "edge_10",
+    "category": "edge",
+    "label": "Mid-stream requirement change",
+    "prompt": "Build a simple todo app. Actually make it a team collaboration tool. Wait no, make it a full project management platform with time tracking, billing clients, and integrations with GitHub and Slack."
+  }
+]

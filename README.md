@@ -4,7 +4,6 @@
 > A compiler-inspired AI pipeline that converts plain English product descriptions into structured, cross-validated UI, API, database, and auth configurations — ready to power real applications.
 
 🔗 **Live Demo:** https://solum-ai.vercel.app
-📹 **Loom Walkthrough:** *(coming soon)*
 
 ---
 
@@ -271,4 +270,4 @@ Health check endpoint.
 
 ## License
 
-MIT © 2025 Solum AI
+MIT © 2026 Solum AI

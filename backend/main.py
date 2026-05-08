@@ -127,9 +127,15 @@ async def sse_pipeline(prompt: str, run_id: str):
 
 # ─── Routes ───────────────────────────────────────────────────────────────────
 
+_START_TIME = time.time()
+
 @app.get("/health")
 async def health():
-    return {"status": "ok", "service": "solum-ai"}
+    return {
+        "status": "ok",
+        "service": "solum-ai",
+        "uptime_seconds": round(time.time() - _START_TIME),
+    }
 
 
 @app.post("/generate")

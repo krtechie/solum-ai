@@ -20,7 +20,6 @@ FALLBACK_CHAINS = {
     "fast": [
         "google/gemini-2.0-flash-exp:free",
         "mistralai/mistral-7b-instruct:free",
-        "qwen/qwen-2-7b-instruct:free",
         "meta-llama/llama-3.3-70b-instruct:free",
     ],
     "reasoning": [
@@ -31,12 +30,12 @@ FALLBACK_CHAINS = {
     "repair": [
         "google/gemma-3-27b-it:free",
         "google/gemini-2.0-flash-exp:free",
-        "mistralai/mistral-7b-instruct:free",
+        "meta-llama/llama-3.3-70b-instruct:free",
     ],
     "fallback": [
         "meta-llama/llama-3.3-70b-instruct:free",
         "mistralai/mistral-7b-instruct:free",
-        "qwen/qwen-2-7b-instruct:free",
+        "google/gemini-2.0-flash-exp:free",
     ],
 }
 

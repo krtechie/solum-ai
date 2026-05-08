@@ -21,6 +21,7 @@ async def run(prompt: str) -> tuple[IntentSchema, int, str]:
         system=STAGE1_SYSTEM,
         user=stage1_user(prompt),
         model_key="fast",
+        max_retries=5,
     )
 
     intent = IntentSchema.model_validate(raw)

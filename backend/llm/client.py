@@ -75,7 +75,7 @@ async def call_llm(
     system: str,
     user: str,
     model_key: str = "fast",
-    max_retries: int = 3,
+    max_retries: int = 5,
     temperature: float = 0.1,
     expect_json: bool = True,
 ) -> str:
@@ -117,7 +117,7 @@ async def call_llm(
             last_error = e
             err_str = str(e).lower()
             if "rate" in err_str or "429" in err_str or "limit" in err_str:
-                wait = 2 ** attempt * 4
+                wait = 2 ** attempt * 10  # 10, 20, 40, 80, 160s
                 logger.warning(f"[LLM] rate limited, waiting {wait}s")
                 await asyncio.sleep(wait)
             elif "timeout" in err_str or "connection" in err_str:

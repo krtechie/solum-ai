@@ -21,6 +21,7 @@ async def _gen_ui(intent: dict, design: dict) -> UISchema:
         system=UI_SCHEMA_SYSTEM,
         user=ui_schema_user(intent, design),
         model_key="fast",
+        max_retries=5,
     )
     return UISchema.model_validate(raw)
 
@@ -30,6 +31,7 @@ async def _gen_api(intent: dict, design: dict) -> APISchema:
         system=API_SCHEMA_SYSTEM,
         user=api_schema_user(intent, design),
         model_key="fast",
+        max_retries=5,
     )
     return APISchema.model_validate(raw)
 
@@ -39,6 +41,7 @@ async def _gen_db(intent: dict, design: dict) -> DBSchema:
         system=DB_SCHEMA_SYSTEM,
         user=db_schema_user(intent, design),
         model_key="reasoning",
+        max_retries=5,
     )
     return DBSchema.model_validate(raw)
 
@@ -48,6 +51,7 @@ async def _gen_auth(intent: dict, design: dict) -> AuthSchema:
         system=AUTH_SCHEMA_SYSTEM,
         user=auth_schema_user(intent, design),
         model_key="fast",
+        max_retries=5,
     )
     return AuthSchema.model_validate(raw)
 

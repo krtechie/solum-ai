@@ -21,6 +21,7 @@ async def run(intent: IntentSchema) -> tuple[DesignSchema, int, str]:
         system=STAGE2_SYSTEM,
         user=stage2_user(intent.model_dump()),
         model_key="reasoning",
+        max_retries=5,
     )
 
     design = DesignSchema.model_validate(raw)

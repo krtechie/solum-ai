@@ -110,7 +110,7 @@ export default function RootLayout({
               >
                 Metrics
               </Link>
-              
+              <a
                 href="https://github.com/krtechie/solum-ai"
                 target="_blank"
                 rel="noopener noreferrer"

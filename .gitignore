@@ -220,3 +220,6 @@ __marimo__/
 # Allow frontend lib directory
 !frontend/lib/
 !frontend/lib/**
+
+# Allow frontend env example
+!frontend/.env.example

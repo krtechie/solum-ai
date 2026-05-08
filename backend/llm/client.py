@@ -18,24 +18,24 @@ MODELS = {
 # OpenRouter native fallback chains per role
 FALLBACK_CHAINS = {
     "fast": [
+        "openrouter/auto",
         "google/gemini-2.0-flash-exp:free",
         "mistralai/mistral-7b-instruct:free",
-        "meta-llama/llama-3.3-70b-instruct:free",
     ],
     "reasoning": [
+        "openrouter/auto",
         "deepseek/deepseek-r1:free",
         "google/gemini-2.0-flash-exp:free",
-        "meta-llama/llama-3.3-70b-instruct:free",
     ],
     "repair": [
+        "openrouter/auto",
         "google/gemma-3-27b-it:free",
-        "google/gemini-2.0-flash-exp:free",
-        "meta-llama/llama-3.3-70b-instruct:free",
+        "mistralai/mistral-7b-instruct:free",
     ],
     "fallback": [
+        "openrouter/auto",
         "meta-llama/llama-3.3-70b-instruct:free",
         "mistralai/mistral-7b-instruct:free",
-        "google/gemini-2.0-flash-exp:free",
     ],
 }
 
@@ -85,8 +85,8 @@ async def call_llm(
     handles retries automatically — no manual retry loop needed.
     """
     client = get_client()
+    primary = "openrouter/auto"
     chain = FALLBACK_CHAINS.get(model_key, FALLBACK_CHAINS["fast"])
-    primary = chain[0]
 
     last_error: Exception | None = None
 

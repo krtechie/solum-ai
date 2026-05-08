@@ -2,17 +2,42 @@ import asyncio
 import json
 import os
 import re
-import time
 import logging
 from openai import AsyncOpenAI
 
 logger = logging.getLogger(__name__)
 
+# Primary models per role
 MODELS = {
     "fast":      "google/gemini-2.0-flash-exp:free",
     "reasoning": "deepseek/deepseek-r1:free",
     "fallback":  "meta-llama/llama-3.3-70b-instruct:free",
     "repair":    "google/gemma-3-27b-it:free",
+}
+
+# OpenRouter native fallback chains per role
+FALLBACK_CHAINS = {
+    "fast": [
+        "google/gemini-2.0-flash-exp:free",
+        "mistralai/mistral-7b-instruct:free",
+        "qwen/qwen-2-7b-instruct:free",
+        "meta-llama/llama-3.3-70b-instruct:free",
+    ],
+    "reasoning": [
+        "deepseek/deepseek-r1:free",
+        "google/gemini-2.0-flash-exp:free",
+        "meta-llama/llama-3.3-70b-instruct:free",
+    ],
+    "repair": [
+        "google/gemma-3-27b-it:free",
+        "google/gemini-2.0-flash-exp:free",
+        "mistralai/mistral-7b-instruct:free",
+    ],
+    "fallback": [
+        "meta-llama/llama-3.3-70b-instruct:free",
+        "mistralai/mistral-7b-instruct:free",
+        "qwen/qwen-2-7b-instruct:free",
+    ],
 }
 
 _client: AsyncOpenAI | None = None
@@ -51,48 +76,56 @@ async def call_llm(
     system: str,
     user: str,
     model_key: str = "fast",
-    max_retries: int = 4,
+    max_retries: int = 3,
     temperature: float = 0.1,
     expect_json: bool = True,
 ) -> str:
+    """
+    Call OpenRouter using native fallback routing.
+    Passes the full fallback chain in extra_body so OpenRouter
+    handles retries automatically — no manual retry loop needed.
+    """
     client = get_client()
-    model_order = [MODELS[model_key], MODELS["fallback"]]
-    if model_key == "fallback":
-        model_order = [MODELS["fallback"]]
+    chain = FALLBACK_CHAINS.get(model_key, FALLBACK_CHAINS["fast"])
+    primary = chain[0]
 
     last_error: Exception | None = None
 
-    for model in model_order:
-        for attempt in range(max_retries):
-            try:
-                logger.info(f"[LLM] model={model} attempt={attempt + 1}")
-                resp = await client.chat.completions.create(
-                    model=model,
-                    temperature=temperature,
-                    messages=[
-                        {"role": "system", "content": system},
-                        {"role": "user",   "content": user},
-                    ],
-                    max_tokens=4096,
-                )
-                content = resp.choices[0].message.content or ""
-                if expect_json:
-                    content = _extract_json(content)
-                logger.info(f"[LLM] success model={model}")
-                return content
+    for attempt in range(max_retries):
+        try:
+            logger.info(f"[LLM] model_key={model_key} attempt={attempt + 1}")
+            resp = await client.chat.completions.create(
+                model=primary,
+                temperature=temperature,
+                messages=[
+                    {"role": "system", "content": system},
+                    {"role": "user",   "content": user},
+                ],
+                max_tokens=4096,
+                extra_body={
+                    "models": chain,
+                    "route": "fallback",
+                },
+            )
+            content = resp.choices[0].message.content or ""
+            served_by = getattr(resp, "model", primary)
+            logger.info(f"[LLM] success served_by={served_by}")
+            if expect_json:
+                content = _extract_json(content)
+            return content
 
-            except Exception as e:
-                last_error = e
-                err_str = str(e).lower()
-                if "rate" in err_str or "429" in err_str or "limit" in err_str:
-                    wait = 2 ** attempt * 3
-                    logger.warning(f"[LLM] rate limited, waiting {wait}s")
-                    await asyncio.sleep(wait)
-                elif "timeout" in err_str or "connection" in err_str:
-                    await asyncio.sleep(2 ** attempt)
-                else:
-                    logger.warning(f"[LLM] error on {model}: {e}")
-                    break
+        except Exception as e:
+            last_error = e
+            err_str = str(e).lower()
+            if "rate" in err_str or "429" in err_str or "limit" in err_str:
+                wait = 2 ** attempt * 4
+                logger.warning(f"[LLM] rate limited, waiting {wait}s")
+                await asyncio.sleep(wait)
+            elif "timeout" in err_str or "connection" in err_str:
+                await asyncio.sleep(2 ** attempt)
+            else:
+                logger.warning(f"[LLM] error: {e}")
+                await asyncio.sleep(2)
 
     raise RuntimeError(f"All LLM attempts failed. Last error: {last_error}")
 
@@ -101,7 +134,7 @@ async def call_llm_json(
     system: str,
     user: str,
     model_key: str = "fast",
-    max_retries: int = 4,
+    max_retries: int = 3,
 ) -> dict:
     text = await call_llm(system, user, model_key, max_retries, expect_json=True)
     try:

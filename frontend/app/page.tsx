@@ -50,7 +50,7 @@ export default function HomePage() {
         runId,
         // onEvent
         (raw) => {
-          const event = raw as PipelineEvent;
+          const event = raw as unknown as PipelineEvent;
 
           switch (event.event) {
             case "stage_start":

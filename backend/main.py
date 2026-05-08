@@ -129,7 +129,7 @@ async def sse_pipeline(prompt: str, run_id: str):
 
 _START_TIME = time.time()
 
-@app.get("/health")
+@app.api_route("/health", methods=["GET", "HEAD"])
 async def health():
     return {
         "status": "ok",

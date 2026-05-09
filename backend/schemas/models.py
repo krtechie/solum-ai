@@ -45,7 +45,7 @@ class DesignPage(BaseModel):
     name: str
     route: str
     roles: list[str]
-    primary_entity: str
+    primary_entity: str = ""
 
 
 class UserFlow(BaseModel):

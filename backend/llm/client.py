@@ -3,6 +3,7 @@ import json
 import os
 import re
 import logging
+from json_repair import repair_json
 from openai import AsyncOpenAI
 
 logger = logging.getLogger(__name__)
@@ -138,5 +139,13 @@ async def call_llm_json(
     text = await call_llm(system, user, model_key, max_retries, expect_json=True)
     try:
         return json.loads(text)
-    except json.JSONDecodeError as e:
-        raise ValueError(f"LLM returned invalid JSON: {e}\n\nRaw output:\n{text[:500]}")
+    except json.JSONDecodeError:
+        logger.warning("[LLM] JSON parse failed, attempting repair...")
+        try:
+            repaired = repair_json(text, return_objects=True)
+            if isinstance(repaired, dict):
+                logger.info("[LLM] JSON repaired successfully")
+                return repaired
+            raise ValueError(f"Repaired JSON is not a dict: {type(repaired)}")
+        except Exception as e:
+            raise ValueError(f"LLM returned invalid JSON that could not be repaired: {e}\n\nRaw output:\n{text[:500]}")

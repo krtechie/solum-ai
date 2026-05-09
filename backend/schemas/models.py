@@ -65,7 +65,7 @@ class DesignSchema(BaseModel):
 
 class UIComponent(BaseModel):
     id: str
-    type: Literal["table", "form", "card", "chart", "stat", "modal", "list", "kanban"]
+    type: str
     title: str
     api_endpoint: str
     api_method: Literal["GET", "POST", "PUT", "PATCH", "DELETE"]

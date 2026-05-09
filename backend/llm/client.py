@@ -100,7 +100,7 @@ async def call_llm(
                     {"role": "system", "content": system},
                     {"role": "user",   "content": user},
                 ],
-                max_tokens=4096,
+                max_tokens=16000,
                 extra_body={
                     "models": chain,
                     "route": "fallback",

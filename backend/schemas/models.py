@@ -164,7 +164,7 @@ class DBSchema(BaseModel):
 
 class Permission(BaseModel):
     resource: str
-    actions: list[Literal["create", "read", "update", "delete"]]
+    actions: list[str]
 
 
 class AuthRole(BaseModel):

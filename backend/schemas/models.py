@@ -67,9 +67,9 @@ class UIComponent(BaseModel):
     id: str
     type: str
     title: str
-    api_endpoint: str
-    api_method: Literal["GET", "POST", "PUT", "PATCH", "DELETE"]
-    fields: list[str]
+    api_endpoint: str = ""
+    api_method: str = "GET"
+    fields: list[str] = Field(default_factory=list)
     props: dict[str, Any] = Field(default_factory=dict)
 
 

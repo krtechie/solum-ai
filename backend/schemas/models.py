@@ -152,7 +152,7 @@ class DBRelation(BaseModel):
     from_column: str
     to_table: str
     to_column: str
-    type: Literal["one_to_one", "one_to_many", "many_to_many"]
+    type: str
 
 
 class DBSchema(BaseModel):

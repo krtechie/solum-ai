@@ -44,7 +44,7 @@ class DesignEntity(BaseModel):
 class DesignPage(BaseModel):
     name: str
     route: str
-    roles: list[str]
+    roles: list[str] = []
     primary_entity: str = ""
 
 

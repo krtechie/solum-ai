@@ -103,11 +103,11 @@ class UISchema(BaseModel):
 # ─── STAGE 3b: API SCHEMA ─────────────────────────────────────────────────────
 
 class APIRequestBody(BaseModel):
-    fields: dict[str, str]
+    fields: dict[str, Any]
 
 
 class APIResponseBody(BaseModel):
-    fields: dict[str, str]
+    fields: dict[str, Any]
 
 
 class APIEndpoint(BaseModel):

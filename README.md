@@ -3,7 +3,19 @@
 > **Natural language → validated, executable app schemas**
 > A compiler-inspired AI pipeline that converts plain English product descriptions into structured, cross-validated UI, API, database, and auth configurations — ready to power real applications.
 
-🔗 **Live Demo:** https://solum-ai.vercel.app
+<p>
+  <a href="https://solum-ai-opal.vercel.app">
+    <img src="https://img.shields.io/badge/Live%20Demo-Solum%20AI-7c6dfa?style=for-the-badge&logo=vercel&logoColor=white" alt="Live Demo" />
+  </a>
+  &nbsp;
+  <a href="https://drive.google.com/file/d/1pHhBG3WCmMs1Ycqbc4M01spqZ2FBg7m5/view?usp=drive_link">
+    <img src="https://img.shields.io/badge/Walkthrough%20Video-Google%20Drive-4285F4?style=for-the-badge&logo=google-drive&logoColor=white" alt="Walkthrough Video" />
+  </a>
+  &nbsp;
+  <a href="https://github.com/krtechie/solum-ai">
+    <img src="https://img.shields.io/badge/GitHub-krtechie%2Fsolum--ai-181717?style=for-the-badge&logo=github&logoColor=white" alt="GitHub" />
+  </a>
+</p>
 
 ---
 

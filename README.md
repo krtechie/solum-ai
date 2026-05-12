@@ -13,6 +13,8 @@
   </a>
 </p>
 
+⭐ If you find this useful, give it a star — it helps others discover it.
+
 ---
 
 ## What is Solum AI?

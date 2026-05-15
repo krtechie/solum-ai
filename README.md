@@ -1,5 +1,13 @@
 # Solum AI 🧠
 
+![License](https://img.shields.io/github/license/krtechie/solum-ai?style=flat-square)
+![Stars](https://img.shields.io/github/stars/krtechie/solum-ai?style=flat-square)
+![Issues](https://img.shields.io/github/issues/krtechie/solum-ai?style=flat-square)
+![Last Commit](https://img.shields.io/github/last-commit/krtechie/solum-ai?style=flat-square)
+![Python](https://img.shields.io/badge/Python-3.11-blue?style=flat-square&logo=python)
+![FastAPI](https://img.shields.io/badge/FastAPI-0.115-009688?style=flat-square&logo=fastapi)
+![Next.js](https://img.shields.io/badge/Next.js-16-black?style=flat-square&logo=next.js)
+
 > **Natural language → validated, executable app schemas**
 > A compiler-inspired AI pipeline that converts plain English product descriptions into structured, cross-validated UI, API, database, and auth configurations — ready to power real applications.
 
